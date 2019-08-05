@@ -1,5 +1,3 @@
-[![github](https://github.githubassets.com/favicon.ico)](https://github.com/AndreyDolzhenko)
-
 # Calendar-XXI-century
 Консольное приложение для вывода на экран календаря на любой год в диапазоне от 2001 до 2099.
 
