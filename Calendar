@@ -23,10 +23,12 @@ int year;
 int month;
 int day;
 int firstDay;
+int counter;
 
 void Enter_Date(); // функция для ввода даты
 bool Check_Year(int X); // проверяет, чтобы год был в пределах нашей ЭРЫ (от Рождества Христова)
 int First_Day_Calculation(); // функция определяет, каким днем недели является первый день в году 
+int First_Day_Definition(int C); // функция возвращает значение первого дня месяца - какой это день недели
 int Continuation(); // предлагаем продолжить или закончить
 void Logo(); // логотип
 
@@ -73,190 +75,10 @@ int main()
 		int x = 0;
 		month = 0; // Обнуляем месяц для корректного повторного воспроизведения календаря
 
-		for (int i = 0; i < 12; i++) // в данном цикле переменная month будет увеличиваться на единицу, определяя месяц
+		for (counter = 0; counter < 12; counter++) // в данном цикле переменная month будет увеличиваться на единицу, определяя месяц
 		{
 			
-			switch (i) // условие для вывода названия месяца и определения дня недели в первый день месяца
-			{
-
-			case 0:
-				firstDay = firstDay;
-				cout << "\n\t\tЯ Н В А Р Ь\n";
-				break;
-			case 1:
-				if (firstDay <= 4 && firstDay > 0) 
-				{
-					firstDay = (firstDay - 4) + 7; // условие позволяет менять дни в пределах от 1 до 7
-				}
-				else if (firstDay > 4 && firstDay <= 7)
-				{
-					firstDay = firstDay - 4;
-				}
-				else
-				{
-					cout << "\n\t!!!ОШИБКА!!!\n";
-				}
-				cout << "\n\t\tФ Е В Р А Л Ь\n";
-				break;
-			case 2:
-				if (year % 4 != 0)
-				{
-					firstDay = firstDay;
-				}
-				else
-				{
-					if (firstDay < 7)
-					{
-						firstDay += 1;
-					}
-					else
-					{
-						firstDay = (firstDay + 1) - 7;
-					}
-
-				}
-
-				cout << "\n\t\tМ А Р Т\n";
-				break;
-			case 3:
-				if (firstDay <= 4)
-				{
-					firstDay = (firstDay - 4) + 7;
-				}
-				else if (firstDay > 4 && firstDay <= 7)
-				{
-					firstDay = firstDay - 4;
-				}
-				else
-				{
-					cout << "\n\t!!!ОШИБКА!!!\n";
-				}
-				cout << "\n\t\tА П Р Е Л Ь\n";
-				break;
-			case 4:
-				if (firstDay <= 5)
-				{
-					firstDay = firstDay + 2;
-				}
-				else if (firstDay > 5 && firstDay <= 7)
-				{
-					firstDay = (firstDay + 2) - 7;
-				}
-				else
-				{
-					cout << "\n\t!!!ОШИБКА!!!\n";
-				}
-				cout << "\n\t\tМ А Й\n";
-				break;
-			case 5:
-				if (firstDay <= 4)
-				{
-					firstDay = (firstDay - 4) + 7;
-				}
-				else if (firstDay > 4 && firstDay <= 7)
-				{
-					firstDay = firstDay - 4;
-				}
-				else
-				{
-					cout << "\n\t!!!ОШИБКА!!!\n";
-				}
-				cout << "\n\t\tИ Ю Н Ь\n";
-				break;
-			case 6:
-				if (firstDay <= 5)
-				{
-					firstDay = firstDay + 2;
-				}
-				else if (firstDay > 5 && firstDay <= 7)
-				{
-					firstDay = (firstDay + 2) - 7;
-				}
-				else
-				{
-					cout << "\n\t!!!ОШИБКА!!!\n";
-				}
-				cout << "\n\t\tИ Ю Л Ь\n";
-				break;
-			case 7:
-				if (firstDay <= 4)
-				{
-					firstDay = (firstDay - 4) + 7;
-				}
-				else if (firstDay > 4 && firstDay <= 7)
-				{
-					firstDay = firstDay - 4;
-				}
-				else
-				{
-					cout << "\n\t!!!ОШИБКА!!!\n";
-				}
-				cout << "\n\t\tА В Г У С Т\n";
-				break;
-			case 8:
-				if (firstDay <= 4)
-				{
-					firstDay = (firstDay - 4) + 7;
-				}
-				else if (firstDay > 4 && firstDay <= 7)
-				{
-					firstDay = firstDay - 4;
-				}
-				else
-				{
-					cout << "\n\t!!!ОШИБКА!!!\n";
-				}
-				cout << "\n\t\tС Е Н Т Я Б Р Ь\n";
-				break;
-			case 9:
-				if (firstDay <= 5)
-				{
-					firstDay = firstDay + 2;
-				}
-				else if (firstDay > 5 && firstDay <= 7)
-				{
-					firstDay = (firstDay + 2) - 7;
-				}
-				else
-				{
-					cout << "\n\t!!!ОШИБКА!!!\n";
-				}
-				cout << "\n\t\tО К Т Я Б Р Ь\n";
-				break;
-			case 10:
-				if (firstDay <= 4)
-				{
-					firstDay = (firstDay - 4) + 7;
-				}
-				else if (firstDay > 4 && firstDay <= 7)
-				{
-					firstDay = firstDay - 4;
-				}
-				else
-				{
-					cout << "\n\t!!!ОШИБКА!!!\n";
-				}
-				cout << "\n\t\tН О Я Б Р Ь\n";
-				break;
-			case 11:
-				if (firstDay <= 5)
-				{
-					firstDay = firstDay + 2;
-				}
-				else if (firstDay > 5 && firstDay <= 7)
-				{
-					firstDay = (firstDay + 2) - 7;
-				}
-				else
-				{
-					cout << "\n\t!!!ОШИБКА!!!\n";
-				}
-				cout << "\n\t\tД Е К А Б Р Ь\n";
-				break;
-
-			default:
-				break;
-			}
+			First_Day_Definition(counter);
 			
 			month++; // определяет изменение месяца с каждым проходом цикла
 			cout << "\n\tПн\tВт\tСр\tЧт\tПт\tСб\tВс\n";
@@ -440,6 +262,192 @@ int First_Day_Calculation()
 	return FD;
 }
 
+int First_Day_Definition(int C)
+{
+	switch (C) // условие для вывода названия месяца и определения дня недели в первый день месяца
+	{
+
+	case 0:
+		firstDay = firstDay;
+		cout << "\n\t\tЯ Н В А Р Ь\n";
+		break;
+	case 1:
+		if (firstDay <= 4 && firstDay > 0)
+		{
+			firstDay = (firstDay - 4) + 7; // условие позволяет менять дни в пределах от 1 до 7
+		}
+		else if (firstDay > 4 && firstDay <= 7)
+		{
+			firstDay = firstDay - 4;
+		}
+		else
+		{
+			cout << "\n\t!!!ОШИБКА!!!\n";
+		}
+		cout << "\n\t\tФ Е В Р А Л Ь\n";
+		break;
+	case 2:
+		if (year % 4 != 0)
+		{
+			firstDay = firstDay;
+		}
+		else
+		{
+			if (firstDay < 7)
+			{
+				firstDay += 1;
+			}
+			else
+			{
+				firstDay = (firstDay + 1) - 7;
+			}
+
+		}
+
+		cout << "\n\t\tМ А Р Т\n";
+		break;
+	case 3:
+		if (firstDay <= 4)
+		{
+			firstDay = (firstDay - 4) + 7;
+		}
+		else if (firstDay > 4 && firstDay <= 7)
+		{
+			firstDay = firstDay - 4;
+		}
+		else
+		{
+			cout << "\n\t!!!ОШИБКА!!!\n";
+		}
+		cout << "\n\t\tА П Р Е Л Ь\n";
+		break;
+	case 4:
+		if (firstDay <= 5)
+		{
+			firstDay = firstDay + 2;
+		}
+		else if (firstDay > 5 && firstDay <= 7)
+		{
+			firstDay = (firstDay + 2) - 7;
+		}
+		else
+		{
+			cout << "\n\t!!!ОШИБКА!!!\n";
+		}
+		cout << "\n\t\tМ А Й\n";
+		break;
+	case 5:
+		if (firstDay <= 4)
+		{
+			firstDay = (firstDay - 4) + 7;
+		}
+		else if (firstDay > 4 && firstDay <= 7)
+		{
+			firstDay = firstDay - 4;
+		}
+		else
+		{
+			cout << "\n\t!!!ОШИБКА!!!\n";
+		}
+		cout << "\n\t\tИ Ю Н Ь\n";
+		break;
+	case 6:
+		if (firstDay <= 5)
+		{
+			firstDay = firstDay + 2;
+		}
+		else if (firstDay > 5 && firstDay <= 7)
+		{
+			firstDay = (firstDay + 2) - 7;
+		}
+		else
+		{
+			cout << "\n\t!!!ОШИБКА!!!\n";
+		}
+		cout << "\n\t\tИ Ю Л Ь\n";
+		break;
+	case 7:
+		if (firstDay <= 4)
+		{
+			firstDay = (firstDay - 4) + 7;
+		}
+		else if (firstDay > 4 && firstDay <= 7)
+		{
+			firstDay = firstDay - 4;
+		}
+		else
+		{
+			cout << "\n\t!!!ОШИБКА!!!\n";
+		}
+		cout << "\n\t\tА В Г У С Т\n";
+		break;
+	case 8:
+		if (firstDay <= 4)
+		{
+			firstDay = (firstDay - 4) + 7;
+		}
+		else if (firstDay > 4 && firstDay <= 7)
+		{
+			firstDay = firstDay - 4;
+		}
+		else
+		{
+			cout << "\n\t!!!ОШИБКА!!!\n";
+		}
+		cout << "\n\t\tС Е Н Т Я Б Р Ь\n";
+		break;
+	case 9:
+		if (firstDay <= 5)
+		{
+			firstDay = firstDay + 2;
+		}
+		else if (firstDay > 5 && firstDay <= 7)
+		{
+			firstDay = (firstDay + 2) - 7;
+		}
+		else
+		{
+			cout << "\n\t!!!ОШИБКА!!!\n";
+		}
+		cout << "\n\t\tО К Т Я Б Р Ь\n";
+		break;
+	case 10:
+		if (firstDay <= 4)
+		{
+			firstDay = (firstDay - 4) + 7;
+		}
+		else if (firstDay > 4 && firstDay <= 7)
+		{
+			firstDay = firstDay - 4;
+		}
+		else
+		{
+			cout << "\n\t!!!ОШИБКА!!!\n";
+		}
+		cout << "\n\t\tН О Я Б Р Ь\n";
+		break;
+	case 11:
+		if (firstDay <= 5)
+		{
+			firstDay = firstDay + 2;
+		}
+		else if (firstDay > 5 && firstDay <= 7)
+		{
+			firstDay = (firstDay + 2) - 7;
+		}
+		else
+		{
+			cout << "\n\t!!!ОШИБКА!!!\n";
+		}
+		cout << "\n\t\tД Е К А Б Р Ь\n";
+		break;
+
+	default:
+		break;
+	}
+	return firstDay;
+}
+
 
 
 void Enter_Date() // функция позволяет вводить первую дату, контролирует ее введение в рамках одного столетия, 12-ти месяцев и дней с учетом месяца
@@ -507,7 +515,3 @@ int Continuation()
 	}   
 	
 }
-
-
-
-
