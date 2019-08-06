@@ -8,10 +8,7 @@ DESCRIPTION:
 
 MIT License
 Copyright (c) 2019 Dolzhenko Andrey
-
 */
-
-
 
 #include<iostream>
 #include<stdlib.h>
@@ -25,12 +22,13 @@ int day;
 int firstDay;
 int counter;
 
-void Enter_Date(); // функция для ввода даты
-bool Check_Year(int X); // проверяет, чтобы год был в пределах нашей ЭРЫ (от Рождества Христова)
+void Enter_Date(); // // функция позволяет вводить первую дату, контролирует ее введение в рамках одного столетия, 12-ти месяцев и дней с учетом месяца
+bool Check_Year(int X); // проверяет, чтобы год был в пределах 21 столетия от 2001 до 2099 года
 int First_Day_Calculation(); // функция определяет, каким днем недели является первый день в году 
 int First_Day_Definition(int C); // функция возвращает значение первого дня месяца - какой это день недели
 int Continuation(); // предлагаем продолжить или закончить
 void Logo(); // логотип
+void Calendar();
 
 int main()
 {
@@ -42,20 +40,16 @@ int main()
 
 	cout << "\n\n\tПРОГРАММА ВЫВОДИТ   К А Л Е Н Д А Р Ь    X X I  ВЕКА";
 	cout << "\n\n\tОТ  2001  ДО  2099 ГОДА";
-
-
-
+	   
 	cout << "\n\n\tГОД необходимо вводить четырмя цифрами. Например: 2019\n";
 	Enter_Date();
 
 	bool state = true;
-	int number, degree;
-	
-
+	int number, degree;	
 	///////////////////////////////////////
 	//Основное тело программы:
 	////////////////////////////////////
-	while (1) // вводим цикл для повторного воспроизведения, пока пользователь не введет "2"
+	while (1) // вводим цикл для повторного воспроизведения календаря, пока пользователь не введет "2"
 	{
 		cout << "\n";
 		system("cls");
@@ -71,136 +65,10 @@ int main()
 		firstDay = First_Day_Calculation();
 		//cout << "\n\n\tПервый день в году " << firstDay << endl;
 
-		int Month_31[40];
-		int x = 0;
-		month = 0; // Обнуляем месяц для корректного повторного воспроизведения календаря
-
-		for (counter = 0; counter < 12; counter++) // в данном цикле переменная month будет увеличиваться на единицу, определяя месяц
-		{
-			
-			First_Day_Definition(counter);
-			
-			month++; // определяет изменение месяца с каждым проходом цикла
-			cout << "\n\tПн\tВт\tСр\tЧт\tПт\tСб\tВс\n";
-
-			if ((month < 8 && month % 2 != 0) || (month >= 8 && month % 2 == 0)) // построение календаря для месяца с 31 днем
-			{
-				for (int i = 0; i < 31 + firstDay; i++)
-				{
-					if (i < firstDay)
-					{
-						cout << "\t  ";
-						if (i % 7 == 0)
-						{
-							cout << endl;
-						}
-					}
-					else
-					{
-						cout << "\t";
-						x++;
-						Month_31[i] = x;
-						cout << Month_31[i] << " ";
-						if (i % 7 == 0)
-						{
-							cout << endl;
-						}
-					}
-
-				}
-			}
-
-			else if ((month > 8 && month % 2 != 0) || (month < 8 && month % 2 == 0 && month != 2)) // определяет месяц с 30 днями
-			{
-				for (int i = 0; i < 30 + firstDay; i++)
-				{
-					if (i < firstDay)
-					{
-						cout << "\t  ";
-						if (i % 7 == 0)
-						{
-							cout << endl;
-						}
-					}
-					else
-					{
-						cout << "\t";
-						x++;
-						Month_31[i] = x;
-						cout << Month_31[i] << " ";
-						if (i % 7 == 0)
-						{
-							cout << endl;
-						}
-					}
-
-				}
-			}
-
-			else if ((year % 4 != 0) && (month == 2)) // определяет февраль с 28 днями
-			{
-				for (int i = 0; i < 28 + firstDay; i++)
-				{
-					if (i < firstDay)
-					{
-						cout << "\t  ";
-						if (i % 7 == 0)
-						{
-							cout << endl;
-						}
-					}
-					else
-					{
-						cout << "\t";
-						x++;
-						Month_31[i] = x;
-						cout << Month_31[i] << " ";
-						if (i % 7 == 0)
-						{
-							cout << endl;
-						}
-					}
-
-				}
-			}
-
-			if ((year % 4 == 0) && (month == 2)) // определяет високосный февраль
-			{
-				for (int i = 0; i < 29 + firstDay; i++)
-				{
-					if (i < firstDay)
-					{
-						cout << "\t  ";
-						if (i % 7 == 0)
-						{
-							cout << endl;
-						}
-					}
-					else
-					{
-						cout << "\t";
-						x++;
-						Month_31[i] = x;
-						cout << Month_31[i] << " ";
-						if (i % 7 == 0)
-						{
-							cout << endl;
-						}
-					}
-
-				}
-			}
-
-
-
-			x = 0;
-
-			cout << endl;
-		}
+		Calendar();			
 
 		Continuation();
 		cout << endl;
-
 	}
 ////////////////////////////////
 }
@@ -222,7 +90,137 @@ void Logo()
 	cout << "(c) Долженко Андрей\n";	
 }
 
-int First_Day_Calculation()
+void Calendar()
+{
+	int Month_31[40];
+	int x = 0;
+	month = 0; // Обнуляем месяц для корректного повторного воспроизведения календаря
+
+	for (counter = 0; counter < 12; counter++) // в данном цикле переменная month будет увеличиваться на единицу, определяя месяц
+	{
+
+		First_Day_Definition(counter);
+
+		month++; // определяет изменение месяца с каждым проходом цикла
+		cout << "\n\tПн\tВт\tСр\tЧт\tПт\tСб\tВс\n";
+
+		if ((month < 8 && month % 2 != 0) || (month >= 8 && month % 2 == 0)) // построение календаря для месяца с 31 днем
+		{
+			for (int i = 0; i < 31 + firstDay; i++)
+			{
+				if (i < firstDay)
+				{
+					cout << "\t  ";
+					if (i % 7 == 0)
+					{
+						cout << endl;
+					}
+				}
+				else
+				{
+					cout << "\t";
+					x++;
+					Month_31[i] = x;
+					cout << Month_31[i] << " ";
+					if (i % 7 == 0)
+					{
+						cout << endl;
+					}
+				}
+
+			}
+		}
+
+		else if ((month > 8 && month % 2 != 0) || (month < 8 && month % 2 == 0 && month != 2)) // определяет месяц с 30 днями
+		{
+			for (int i = 0; i < 30 + firstDay; i++)
+			{
+				if (i < firstDay)
+				{
+					cout << "\t  ";
+					if (i % 7 == 0)
+					{
+						cout << endl;
+					}
+				}
+				else
+				{
+					cout << "\t";
+					x++;
+					Month_31[i] = x;
+					cout << Month_31[i] << " ";
+					if (i % 7 == 0)
+					{
+						cout << endl;
+					}
+				}
+
+			}
+		}
+
+		else if ((year % 4 != 0) && (month == 2)) // определяет февраль с 28 днями
+		{
+			for (int i = 0; i < 28 + firstDay; i++)
+			{
+				if (i < firstDay)
+				{
+					cout << "\t  ";
+					if (i % 7 == 0)
+					{
+						cout << endl;
+					}
+				}
+				else
+				{
+					cout << "\t";
+					x++;
+					Month_31[i] = x;
+					cout << Month_31[i] << " ";
+					if (i % 7 == 0)
+					{
+						cout << endl;
+					}
+				}
+
+			}
+		}
+
+		if ((year % 4 == 0) && (month == 2)) // определяет високосный февраль
+		{
+			for (int i = 0; i < 29 + firstDay; i++)
+			{
+				if (i < firstDay)
+				{
+					cout << "\t  ";
+					if (i % 7 == 0)
+					{
+						cout << endl;
+					}
+				}
+				else
+				{
+					cout << "\t";
+					x++;
+					Month_31[i] = x;
+					cout << Month_31[i] << " ";
+					if (i % 7 == 0)
+					{
+						cout << endl;
+					}
+				}
+
+			}
+		}
+
+
+
+		x = 0;
+
+		cout << endl;
+	}
+}
+
+int First_Day_Calculation() // расчитывает каким днем недели будет первый день в году
 {
 	int FD = 0;
 	int checkYear = 0;
@@ -262,7 +260,7 @@ int First_Day_Calculation()
 	return FD;
 }
 
-int First_Day_Definition(int C)
+int First_Day_Definition(int C) // расчитывает каким днем недели будет первый день в месяце
 {
 	switch (C) // условие для вывода названия месяца и определения дня недели в первый день месяца
 	{
@@ -448,8 +446,6 @@ int First_Day_Definition(int C)
 	return firstDay;
 }
 
-
-
 void Enter_Date() // функция позволяет вводить первую дату, контролирует ее введение в рамках одного столетия, 12-ти месяцев и дней с учетом месяца
 {
 	do
@@ -515,3 +511,4 @@ int Continuation()
 	}   
 	
 }
+
