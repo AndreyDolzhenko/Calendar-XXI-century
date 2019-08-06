@@ -1,13 +1,13 @@
 /*
 VERSION: 0.1
 AUTHOR: Dolzhenko Andrey
-COPYRIGHT: © Dolzhenko Andrey, 2019; © Компьютерная академия ШАГ. Воронеж, 2019
+COPYRIGHT: © Dolzhenko Andrey, 2019
 LICENSE: MIT License
 DESCRIPTION:
 Программа позволяет вывести на экран календарь любого года XXI века от 2001 до 2099. Год вводит пользователь.
 
 MIT License
-Copyright (c) 2019 Dolzhenko Andrey, Компьютерная академия ШАГ. Воронеж
+Copyright (c) 2019 Dolzhenko Andrey
 
 */
 
@@ -397,8 +397,7 @@ void Logo()
 
 	cout << "\n\n\n";
 
-	cout << "(c) Долженко Андрей\n";
-	cout << "(c) Компьютерная академия ШАГ. Воронеж\n";
+	cout << "(c) Долженко Андрей\n";	
 }
 
 int First_Day_Calculation()
@@ -466,36 +465,47 @@ bool Check_Year(int X)
 
 int Continuation()
 {
-	int start;
+	char start;
+	int startCheck = 0;
+	
+	cout << "\n\n\tПосмотреть другой год?\n\tДа - 1\tНет - 2\t"; cin >> start;	
+	
+		do
+		{
 
-	cout << "\n\n\tПосмотреть другой год?\n\tДа - 1\tНет - 2\t"; cin >> start;
+			if (start >= 49 && start <= 50)
+			{
+				startCheck = start - 48;
+				
+			}
 
-	switch (start)
+			else
+			{
+				cout << "\n\t!!!Введенный символ некорректен!!!\n";
+				cout << "\n\n\tПосмотреть другой год?\n\tДа - 1\tНет - 2\t"; cin >> start;
+
+				continue;
+			}
+		}while (startCheck < 1 || startCheck > 2);
+	
+	
+	//cout << "\n\n\t" << startCheck << endl;
+	
+	switch (startCheck)
 	{
-	case 1:
-	{
+		case 1:
+		{
 		Enter_Date();
 		break;
-	}
-
-	case 2:
-	{
+		}
+						
+		case 2:
+		{
 		exit(0);
 		break;
-	}
-
-	default:
-	{
-		while (start != 1 && start != 2)
-		{
-			cout << "\nВведенный символ некорректен!!!\n\n";
-			cout << "\n\n\tПосмотреть другой год?\n\tДа - 1\tНет - 2\t"; cin >> start;
-		}
-	}
-
-	}
-	   
-	//system("cls");
+		}	
+	}   
+	
 }
 
 
