@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/andreydolzhenko/calendar-xxi-century/badge)](https://www.codefactor.io/repository/github/andreydolzhenko/calendar-xxi-century)
+
 # Calendar-XXI-century
 Консольное приложение для вывода на экран календаря на любой год в диапазоне от 2001 до 2099.
 
