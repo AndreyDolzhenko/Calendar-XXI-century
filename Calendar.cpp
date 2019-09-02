@@ -33,17 +33,13 @@ void Calendar();
 int main()
 {
 	setlocale(LC_ALL, "ru");
-
 	Logo(); // Выводим логотип
 	cout << "\n\n";
 	system("pause");
-
 	cout << "\n\n\tПРОГРАММА ВЫВОДИТ   К А Л Е Н Д А Р Ь    X X I  ВЕКА";
-	cout << "\n\n\tОТ  2001  ДО  2099 ГОДА";
-	   
+	cout << "\n\n\tОТ  2001  ДО  2099 ГОДА";	   
 	cout << "\n\n\tГОД необходимо вводить четырмя цифрами. Например: 2019\n";
 	Enter_Date();
-
 	bool state = true;
 	int number, degree;	
 	///////////////////////////////////////
@@ -53,20 +49,14 @@ int main()
 	{
 		cout << "\n";
 		system("cls");
-
 		Logo();
 		cout << "\n\n";
-
 		cout << "\n\t\t\tКАЛЕНДАРЬ НА " << year << " ГОД\n\n";
-
 		year = year % 100;
 		//cout << year<<endl;
-
 		firstDay = First_Day_Calculation();
 		//cout << "\n\n\tПервый день в году " << firstDay << endl;
-
-		Calendar();			
-
+		Calendar();	
 		Continuation();
 		cout << endl;
 	}
@@ -84,9 +74,7 @@ void Logo()
 	cout << "          **  **  \t  **  **      \t**  \t***    ***    \t**      \t**  **     \n";
 	cout << "         **    ** \t **    **     \t**  \t**********    \t******* \t**   **     \n";
 	cout << "        **      **\t**      **    \t**  \t********      \t******* \t**    **     \n";
-
 	cout << "\n\n\n";
-
 	cout << "(c) Долженко Андрей\n";	
 }
 
@@ -95,15 +83,11 @@ void Calendar()
 	int Month_31[40];
 	int x = 0;
 	month = 0; // Обнуляем месяц для корректного повторного воспроизведения календаря
-
 	for (counter = 0; counter < 12; counter++) // в данном цикле переменная month будет увеличиваться на единицу, определяя месяц
 	{
-
 		First_Day_Definition(counter);
-
 		month++; // определяет изменение месяца с каждым проходом цикла
 		cout << "\n\tПн\tВт\tСр\tЧт\tПт\tСб\tВс\n";
-
 		if ((month < 8 && month % 2 != 0) || (month >= 8 && month % 2 == 0)) // построение календаря для месяца с 31 днем
 		{
 			for (int i = 0; i < 31 + firstDay; i++)
@@ -127,10 +111,8 @@ void Calendar()
 						cout << endl;
 					}
 				}
-
 			}
 		}
-
 		else if ((month > 8 && month % 2 != 0) || (month < 8 && month % 2 == 0 && month != 2)) // определяет месяц с 30 днями
 		{
 			for (int i = 0; i < 30 + firstDay; i++)
@@ -154,10 +136,8 @@ void Calendar()
 						cout << endl;
 					}
 				}
-
 			}
 		}
-
 		else if ((year % 4 != 0) && (month == 2)) // определяет февраль с 28 днями
 		{
 			for (int i = 0; i < 28 + firstDay; i++)
@@ -181,10 +161,8 @@ void Calendar()
 						cout << endl;
 					}
 				}
-
 			}
 		}
-
 		if ((year % 4 == 0) && (month == 2)) // определяет високосный февраль
 		{
 			for (int i = 0; i < 29 + firstDay; i++)
@@ -208,30 +186,22 @@ void Calendar()
 						cout << endl;
 					}
 				}
-
 			}
 		}
-
-
-
 		x = 0;
 
 		cout << endl;
 	}
 }
-
 int First_Day_Calculation() // расчитывает каким днем недели будет первый день в году
 {
 	int FD = 0;
 	int checkYear = 0;
 	int x = 5;
-
 	year = year % 100;
-
 	for (int i = 0; i < year; i++)
 	{
 		checkYear++;
-
 		if (checkYear % x != 0)
 		{
 			FD++;
@@ -241,8 +211,6 @@ int First_Day_Calculation() // расчитывает каким днем нед
 			FD += 2;
 			x += 4;
 		}
-
-
 		if (FD <= 7)
 		{
 			FD = FD;
@@ -251,20 +219,14 @@ int First_Day_Calculation() // расчитывает каким днем нед
 		{
 			FD -= 7;
 		}
-
-
 		//cout << FD << " ";
-
 	}
-
 	return FD;
 }
-
 int First_Day_Definition(int C) // расчитывает каким днем недели будет первый день в месяце
 {
 	switch (C) // условие для вывода названия месяца и определения дня недели в первый день месяца
 	{
-
 	case 0:
 		firstDay = firstDay;
 		cout << "\n\t\tЯ Н В А Р Ь\n";
@@ -299,9 +261,7 @@ int First_Day_Definition(int C) // расчитывает каким днем н
 			{
 				firstDay = (firstDay + 1) - 7;
 			}
-
 		}
-
 		cout << "\n\t\tМ А Р Т\n";
 		break;
 	case 3:
@@ -439,62 +399,46 @@ int First_Day_Definition(int C) // расчитывает каким днем н
 		}
 		cout << "\n\t\tД Е К А Б Р Ь\n";
 		break;
-
 	default:
 		break;
 	}
 	return firstDay;
 }
-
 void Enter_Date() // функция позволяет вводить первую дату, контролирует ее введение в рамках одного столетия, 12-ти месяцев и дней с учетом месяца
 {
 	do
 	{
 		cout << "\n\n\tВведите ГОД: "; cin >> year;
-
 	} while (!Check_Year(year));
-
 }
-
 bool Check_Year(int X)
 {
 	if (X < 2001 || X > 2099)
 	{
 		cout << "\n\n\tВведите год от 2001 до 2099!!!";
 		return false;
-
 	}
 	return true;
 }
-
 int Continuation()
 {
 	char start;
-	int startCheck = 0;
-	
+	int startCheck = 0;	
 	cout << "\n\n\tПосмотреть другой год?\n\tДа - 1\tНет - 2\t"; cin >> start;	
-	
 		do
 		{
-
 			if (start >= 49 && start <= 50)
 			{
-				startCheck = start - 48;
-				
+				startCheck = start - 48;				
 			}
-
 			else
 			{
 				cout << "\n\t!!!Введенный символ некорректен!!!\n";
 				cout << "\n\n\tПосмотреть другой год?\n\tДа - 1\tНет - 2\t"; cin >> start;
-
 				continue;
 			}
-		}while (startCheck < 1 || startCheck > 2);
-	
-	
-	//cout << "\n\n\t" << startCheck << endl;
-	
+		}while (startCheck < 1 || startCheck > 2);	
+	//cout << "\n\n\t" << startCheck << endl;	
 	switch (startCheck)
 	{
 		case 1:
@@ -508,7 +452,5 @@ int Continuation()
 		exit(0);
 		break;
 		}	
-	}   
-	
+	}   	
 }
-
